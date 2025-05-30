@@ -31,10 +31,10 @@ export default function AdminPage() {
   const fetchReclamations = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/reclamations");
+      const res = await fetch("/api/reclamations/all"); // ✅ CORRIGÉ ICI
       const data = await res.json();
-  
-      // Ici on attend un tableau directement (pas un objet avec une clé "reclamations")
+
+      // On attend un tableau directement
       setReclamations(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error('Erreur de récupération', err);
@@ -42,8 +42,6 @@ export default function AdminPage() {
       setLoading(false);
     }
   };
-  
-  
 
   // Mettre à jour le statut et la réponse
   const handleStatusChange = async (id, newStatus, reponse) => {
