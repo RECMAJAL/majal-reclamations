@@ -6,16 +6,16 @@ export default function ReclamationPage() {
   const [email, setEmail] = useState('');
   const [telephone, setTelephone] = useState('');
   const [localisation, setLocalisation] = useState('');
-  const [dateNaissance, setDateNaissance] = useState('');
+  const [datedereclamation, setDatedeReclamation] = useState('');
   const [identite, setIdentite] = useState('');
-  const [description, setDescription] = useState('');
+  const [descriptiondelareclamation, setDescriptiondelaReclamation] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!nom || !email || !telephone || !localisation || !dateNaissance || !identite || !description) {
+    if (!nom || !email || !telephone || !localisation || !datedereclamation || !identite || !descriptiondelareclamation) {
       setErrorMessage("Tous les champs sont obligatoires !");
       return;
     }
@@ -37,9 +37,9 @@ export default function ReclamationPage() {
           email,
           telephone,
           localisation,
-          dateNaissance,
+          date: datedereclamation,
           identite,
-          description
+          description: descriptiondelareclamation,
         }),
       });
 
@@ -49,9 +49,9 @@ export default function ReclamationPage() {
         setEmail('');
         setTelephone('');
         setLocalisation('');
-        setDateNaissance('');
+        setDatedeReclamation('');
         setIdentite('');
-        setDescription('');
+        setDescriptiondelaReclamation('');
       } else {
         setErrorMessage("Une erreur est survenue lors de l'envoi.");
       }
@@ -71,7 +71,7 @@ export default function ReclamationPage() {
             <label className="block mb-1 font-medium text-[#003865]">Nom</label>
             <input
               type="text"
-              className="w-full border border-[#003865] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#003865] transition"
+              className="w-full border border-[#003865] rounded-lg p-3"
               value={nom}
               onChange={(e) => setNom(e.target.value)}
               required
@@ -81,7 +81,7 @@ export default function ReclamationPage() {
             <label className="block mb-1 font-medium text-[#003865]">Email</label>
             <input
               type="email"
-              className="w-full border border-[#003865] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#003865] transition"
+              className="w-full border border-[#003865] rounded-lg p-3"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -91,7 +91,7 @@ export default function ReclamationPage() {
             <label className="block mb-1 font-medium text-[#003865]">Téléphone</label>
             <input
               type="text"
-              className="w-full border border-[#003865] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#003865] transition"
+              className="w-full border border-[#003865] rounded-lg p-3"
               value={telephone}
               onChange={(e) => setTelephone(e.target.value)}
               required
@@ -101,19 +101,19 @@ export default function ReclamationPage() {
             <label className="block mb-1 font-medium text-[#003865]">Localisation</label>
             <input
               type="text"
-              className="w-full border border-[#003865] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#003865] transition"
+              className="w-full border border-[#003865] rounded-lg p-3"
               value={localisation}
               onChange={(e) => setLocalisation(e.target.value)}
               required
             />
           </div>
           <div>
-            <label className="block mb-1 font-medium text-[#003865]">Date de naissance</label>
+            <label className="block mb-1 font-medium text-[#003865]">Date de la réclamation</label>
             <input
               type="date"
-              className="w-full border border-[#003865] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#003865] transition"
-              value={dateNaissance}
-              onChange={(e) => setDateNaissance(e.target.value)}
+              className="w-full border border-[#003865] rounded-lg p-3"
+              value={datedereclamation}
+              onChange={(e) => setDatedeReclamation(e.target.value)}
               required
             />
           </div>
@@ -121,18 +121,18 @@ export default function ReclamationPage() {
             <label className="block mb-1 font-medium text-[#003865]">Numéro de carte nationale ou passeport</label>
             <input
               type="text"
-              className="w-full border border-[#003865] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#003865] transition"
+              className="w-full border border-[#003865] rounded-lg p-3"
               value={identite}
               onChange={(e) => setIdentite(e.target.value)}
               required
             />
           </div>
           <div>
-            <label className="block mb-1 font-medium text-[#003865]">Description</label>
+            <label className="block mb-1 font-medium text-[#003865]">Description de la réclamation</label>
             <textarea
-              className="w-full border border-[#003865] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#003865] transition"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              className="w-full border border-[#003865] rounded-lg p-3"
+              value={descriptiondelareclamation}
+              onChange={(e) => setDescriptiondelaReclamation(e.target.value)}
               required
             ></textarea>
           </div>

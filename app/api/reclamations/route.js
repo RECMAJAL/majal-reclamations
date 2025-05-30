@@ -17,13 +17,31 @@ export async function POST(req) {
 
 
 
-export async function GET() {
-  await connectDB();
+export async function GET(req) {
+  try {
+    await connectDB();
 
-  const reclamations = await Reclamation.find({}).lean();
+    // Récupérer l'email depuis l'URL (ex: ?email=test@gmail.com)
+    const { searchParams } = new URL(req.url);
+    const email = searchParams.get("email");
 
-  return new Response(JSON.stringify(reclamations), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-  });
+    if (!email) {
+      return NextResponse.json({ message: "Email requis" }, { status: 400 });
+    }
+
+    // Filtrer les réclamations par email
+    const reclamations = await Reclamation.find({ email }).lean();
+
+    return new Response(JSON.stringify(reclamations), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+  } catch (error) {
+    console.error("Erreur GET:", error);
+    return new Response(JSON.stringify({ message: "Erreur serveur" }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 }
